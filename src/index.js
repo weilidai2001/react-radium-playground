@@ -4,7 +4,6 @@ import routes from './routes';
 import '../sass/main.scss';
 import { Router, browserHistory } from 'react-router';
 
-
 ReactDOM.render(
   <Router history={browserHistory} routes={routes} />, document.getElementById('root')
 );

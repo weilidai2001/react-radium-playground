@@ -2,16 +2,15 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'cheap-module-eval-source-map',
   entry: [
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
+    'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
     './src/index'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/static/'
+    publicPath: '/'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()

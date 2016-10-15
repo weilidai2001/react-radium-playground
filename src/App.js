@@ -18,6 +18,7 @@ export default class App extends Component {
         <PropertyThumbnail property={content.property}/>
         <PropertyThumbnail property={content.property}/>
         <PropertyThumbnail property={content.property}/>
+        <PropertyThumbnail property={content.property}/>
       </PropertiesContainer>
     );
   }
