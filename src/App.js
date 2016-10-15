@@ -1,10 +1,18 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropertyThumbnail from './property-thumbnail';
+import PropertiesContainer from './properties-container';
 
 export default class App extends Component {
   render() {
     return (
-      <PropertyThumbnail/>
+      <PropertiesContainer>
+        <PropertyThumbnail/>
+        <PropertyThumbnail/>
+        <PropertyThumbnail/>
+        <PropertyThumbnail/>
+        <PropertyThumbnail/>
+        <PropertyThumbnail/>
+      </PropertiesContainer>
     );
   }
 }

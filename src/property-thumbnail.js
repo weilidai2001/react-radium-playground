@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Radium from 'radium';
+import Radium, {Style} from 'radium';
 
 class PropertyThumbnail extends React.Component {
   render() {
@@ -9,17 +9,19 @@ class PropertyThumbnail extends React.Component {
 
 const styles = {
   root: {
-    maxWidth: "400px",
+    maxWidth: "380px",
     display: "block"
   },
   heading: {
     backgroundColor: "#E3393E",
     color: "white",
     fontSize: "15px",
-    padding: "5px 0 5px 0",
+    paddingLeft: "5px",
+    paddingRight: "5px",
+    paddingTop: "5px",
+    paddingBottom: "5px",
     marginBottom: 0,
-    textAlign: "left",
-    paddingLeft: "10px"
+    textAlign: "left"
   },
   thumbnailImage: {
     backgroundImage: "url('https://liuinternational.s3.amazonaws.com/asset/1469384696834.jpg')",
@@ -37,15 +39,13 @@ const styles = {
     display: "flex"
   },
   description: {
-    width: "66.6%",
-    marginLeft: "15px"
+    width: "66.6%"
   },
   attributes: {
     width: "33.3%"
   },
   ul: {
-    listStyle: "disc",
-    marginLeft: "10px"
+    listStyle: "disc"
   }
 };
 
