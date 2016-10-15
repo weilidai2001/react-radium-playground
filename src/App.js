@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import PropertyThumbnail from './property-thumbnail';
 import PropertiesContainer from './properties-container';
 
-require('../sass/main.scss');
-
 const content = {
   property: {
     price: "£2,950,000"

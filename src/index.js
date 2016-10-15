@@ -1,5 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import routes from './routes';
+import '../sass/main.scss';
+import { Router, browserHistory } from 'react-router';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+ReactDOM.render(
+  <Router history={browserHistory} routes={routes} />, document.getElementById('root')
+);
