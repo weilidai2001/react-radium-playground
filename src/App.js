@@ -1,25 +1,10 @@
 import React, {Component} from 'react';
-import PropertyThumbnail from './property-thumbnail';
-import PropertiesContainer from './properties-container';
-
-const content = {
-  property: {
-    price: "£2,950,000"
-  }
-};
+import PropertiesContainer from './components/properties/properties-container';
 
 export default class App extends Component {
   render() {
     return (
-      <PropertiesContainer>
-        <PropertyThumbnail property={content.property}/>
-        <PropertyThumbnail property={content.property}/>
-        <PropertyThumbnail property={content.property}/>
-        <PropertyThumbnail property={content.property}/>
-        <PropertyThumbnail property={content.property}/>
-        <PropertyThumbnail property={content.property}/>
-        <PropertyThumbnail property={content.property}/>
-      </PropertiesContainer>
+      <PropertiesContainer/>
     );
   }
 }
