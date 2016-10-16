@@ -8,17 +8,23 @@ class PropertiesPage extends React.Component {
   }
 
   render() {
-    const {properties} = this.props;
+    const {residential, commercial, hotels } = this.props;
 
     return (
-      <PropertiesContainer properties={properties}/>
+      <div>
+        <PropertiesContainer properties={residential}/>
+        <PropertiesContainer properties={commercial}/>
+        <PropertiesContainer properties={hotels}/>
+      </div>
     );
   }
 }
 
 function mapStateToProps(state, ownProps) {
   return {
-    properties: state.properties
+    residential: state.properties.filter(property => property.propertyType == 'residential'),
+    commercial: state.properties.filter(property => property.propertyType == 'business'),
+    hotels: state.properties.filter(property => property.propertyType == 'hotel')
   };
 }
 
