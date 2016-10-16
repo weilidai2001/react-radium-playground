@@ -9,7 +9,10 @@ module.exports = {
   debug: true,
   devtool: 'source-map',
   noInfo: false,
-  entry: './src/index',
+  entry: [
+    'babel-polyfill',
+    './src/index'
+  ],
   target: 'web',
   output: {
     path: __dirname + '/dist', // Note: Physical files are only output by the production build task `npm run build`.

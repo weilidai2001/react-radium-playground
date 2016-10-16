@@ -4,6 +4,8 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
+    'eventsource-polyfill', // necessary for hot reloading with IE
+    'babel-polyfill',
     'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
     './src/index'
   ],
