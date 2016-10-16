@@ -47,37 +47,34 @@ const styles = {
   }
 };
 
-class PropertyThumbnail extends React.Component {
-  render() {
-    return (
-      <a href="/pages/cn/property-details.html?id=1469384194691" style={styles.root}>
-        <div style={styles.heading}>{ this.props.property.price }</div>
-        <div style={styles.thumbnailImage}></div>
-        <div style={styles.subHeading}>伦敦西北市郊独栋豪华花园洋房在售</div>
-        <div style={styles.thumbnailBody}>
-          <div style={styles.description}>
-            <ul style={styles.ul}>
-              <li>6间客厅、4间带独立卫浴的睡房、2间衣帽间</li>
-              <li>含家庭影院、健身房、花园 等设施</li>
-              <li>洋房花园总占地面积：2.46英亩/近1千平方米</li>
-              <li>永久产权</li>
-            </ul>
-          </div>
-          <div style={styles.attributes}>
-            <div>
-              <span><img style={styles.attributes.img} src="http://liuinternational.com/img/properties/icon-bedroom.png"/></span>
-              <span>4</span></div>
-            <div>
-              <span><img style={styles.attributes.img} src="http://liuinternational.com/img/properties/icon-bathroom.png"/></span>
-              <span>4</span></div>
-            <div>
-              <span><img style={styles.attributes.img} src="http://liuinternational.com/img/properties/icon-living-room.png"/></span>
-              <span>6</span></div>
-          </div>
+const PropertyThumbnail = ({property}) => {
+  return (
+    <a href="/pages/cn/property-details.html?id=1469384194691" style={styles.root}>
+      <div style={styles.heading}>{ property.price }</div>
+      <div style={styles.thumbnailImage}></div>
+      <div style={styles.subHeading}>{ property.shortDescription }</div>
+      <div style={styles.thumbnailBody}>
+        <div style={styles.description}>
+          <ul style={styles.ul}>
+            {
+              property.attributes.map((attribute, index) => <li key={index}>{attribute}</li>)
+            }
+          </ul>
         </div>
-      </a>
-    );
-  }
-}
+        <div style={styles.attributes}>
+          <div>
+            <span><img style={styles.attributes.img} src="http://liuinternational.com/img/properties/icon-bedroom.png"/></span>
+            <span>{property.bedrooms}</span></div>
+          <div>
+            <span><img style={styles.attributes.img} src="http://liuinternational.com/img/properties/icon-bathroom.png"/></span>
+            <span>{property.bathrooms}</span></div>
+          <div>
+            <span><img style={styles.attributes.img} src="http://liuinternational.com/img/properties/icon-living-room.png"/></span>
+            <span>{property.livingrooms}</span></div>
+        </div>
+      </div>
+    </a>
+  );
+};
 
 export default Radium(PropertyThumbnail);

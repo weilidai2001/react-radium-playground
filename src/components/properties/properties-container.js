@@ -2,27 +2,18 @@ import React, {Component} from 'react';
 import Radium from 'radium';
 import PropertyThumbnail from './property-thumbnail';
 
-const content = {
-  property: {
-    price: "£2,950,000"
-  }
-};
 
-class PropertiesContainer extends React.Component {
-  render() {
-    return (
-      <div style={styles.root}>
-        <PropertyThumbnail property={content.property}/>
-        <PropertyThumbnail property={content.property}/>
-        <PropertyThumbnail property={content.property}/>
-        <PropertyThumbnail property={content.property}/>
-        <PropertyThumbnail property={content.property}/>
-        <PropertyThumbnail property={content.property}/>
-        <PropertyThumbnail property={content.property}/>
-      </div>
-    );
-  }
-}
+const PropertiesContainer = ({properties}) => {
+  return (
+    <div style={styles.root}>
+      {
+        properties.map(property =>
+          <PropertyThumbnail key={property.id} property={property}/>
+        )
+      }
+    </div>
+  );
+};
 
 const styles = {
   root: {
