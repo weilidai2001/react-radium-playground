@@ -49,15 +49,9 @@ function getPropertyById(properties, id) {
 function mapStateToProps(state, ownProps) {
   const id = ownProps.params.id;
 
-  let property = {};
+  const property = id && state.properties.length > 0 ? getPropertyById(state.properties, id) : {};
 
-  if (id && state.properties.length > 0) {
-    property = getPropertyById(state.properties, id);
-  }
-
-  return {
-    property
-  };
+  return {property};
 }
 
 
