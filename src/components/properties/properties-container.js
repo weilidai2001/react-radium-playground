@@ -19,7 +19,6 @@ const styles = {
   root: {
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "space-between",
     maxWidth: "1200px"
   }
 };

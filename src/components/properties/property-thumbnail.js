@@ -3,8 +3,9 @@ import Radium, {Style} from 'radium';
 
 const styles = {
   root: {
-    maxWidth: "380px",
-    display: "block"
+    width: "calc(32% - 10px)",
+    display: "block",
+    margin: "10px"
   },
   heading: {
     backgroundColor: "#E3393E",
