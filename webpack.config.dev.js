@@ -2,10 +2,9 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   entry: [
     'eventsource-polyfill', // necessary for hot reloading with IE
-    'babel-polyfill',
     'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
     './src/index'
   ],
@@ -14,6 +13,7 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/'
   },
+  debug: true,
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Radium, {Style} from 'radium';
+import {Link} from 'react-router';
 
 const styles = {
   root: {
@@ -50,10 +51,11 @@ const styles = {
 
 const PropertyThumbnail = ({property}) => {
   return (
-    <a href="/pages/cn/property-details.html?id=1469384194691" style={styles.root}>
+    <div style={styles.root}>
       <div style={styles.heading}>{ property.price }</div>
       <div style={styles.thumbnailImage}></div>
       <div style={styles.subHeading}>{ property.shortDescription }</div>
+      <Link to={'/operations/properties/' + property.id}>Edit</Link>
       <div style={styles.thumbnailBody}>
         <div style={styles.description}>
           <ul style={styles.ul}>
@@ -74,7 +76,7 @@ const PropertyThumbnail = ({property}) => {
             <span>{property.livingrooms}</span></div>
         </div>
       </div>
-    </a>
+    </div>
   );
 };
 
