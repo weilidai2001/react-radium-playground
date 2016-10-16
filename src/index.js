@@ -6,7 +6,10 @@ import configureStore from './store/configure-store';
 import '../sass/main.scss';
 import {Router, browserHistory} from 'react-router';
 
+import {loadProperties} from './actions/property-actions';
+
 const store = configureStore();
+store.dispatch(loadProperties());
 
 ReactDOM.render(
   <Provider store={store}>
