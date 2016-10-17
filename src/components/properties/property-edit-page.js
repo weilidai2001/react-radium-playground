@@ -29,12 +29,30 @@ class PropertyEditPage extends React.Component {
     return this.setState({property});
   }
 
+  saveProperty(event) {
+    event.preventDefault();
+
+    this.props.actions.saveCourse(this.state.course)
+      .then(() => this.redirect())
+      .catch(error => {
+        toastr.error(error);
+        this.setState({saving: false});
+      });
+  }
+
+  redirect() {
+    this.setState({saving: false});
+    toastr.success('Course saved');
+    this.context.router.push('/courses');
+  }
+
   render() {
     return (
       <div>
         <TextInput name="id" label="Id" value={this.state.property.id} onChange={this.updatePropertyState} error={this.state.errors.id}/>
         <TextInput name="price" label="Price" value={this.state.property.price} onChange={this.updatePropertyState} error={this.state.errors.title}/>
         <TextInput name="propertyType" label="Property type" value={this.state.property.propertyType} onChange={this.updatePropertyState} error={this.state.errors.propertyType}/>
+        <input type="submit" disabled={saving} value={saving ? 'Saving...' : 'Save'} className="btn btn-primary" onClick={onSave}/>
       </div>
     );
   }
