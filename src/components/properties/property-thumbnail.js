@@ -51,7 +51,7 @@ const styles = {
 
 const PropertyThumbnail = ({property}) => {
   return (
-    <div style={styles.root}>
+    <div className="animation-fly-in-on-scroll" style={styles.root}>
       <div style={styles.heading}>{ property.price }</div>
       <div style={styles.thumbnailImage}></div>
       <div style={styles.subHeading}>{ property.shortDescription }</div>

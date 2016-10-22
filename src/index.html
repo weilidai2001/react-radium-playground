@@ -2,9 +2,69 @@
 <html>
   <head>
     <title>App</title>
+    <style>
+      .come-in {
+        transform: translateY(150px);
+        animation: come-in 0.8s ease forwards;
+      }
+      .come-in:nth-child(odd) {
+        animation-duration: 0.6s; /* So they look staggered */
+      }
+
+      @keyframes come-in {
+        to { transform: translateY(0); }
+      }
+    </style>
   </head>
   <body>
     <div id='root'></div>
     <script src="/bundle.js"></script>
+
+    <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+  <script>
+    (function($) {
+
+      /**
+       * Copyright 2012, Digital Fusion
+       * Licensed under the MIT license.
+       * http://teamdf.com/jquery-plugins/license/
+       *
+       * @author Sam Sehnert
+       * @desc A small plugin that checks whether elements are within
+       *     the user visible viewport of a web browser.
+       *     only accounts for vertical position, not horizontal.
+       */
+
+      $.fn.visible = function(partial) {
+
+        var $t            = $(this),
+                $w            = $(window),
+                viewTop       = $w.scrollTop(),
+                viewBottom    = viewTop + $w.height(),
+                _top          = $t.offset().top,
+                _bottom       = _top + $t.height(),
+                compareTop    = partial === true ? _bottom : _top,
+                compareBottom = partial === true ? _top : _bottom;
+
+        return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
+
+      };
+
+    })(jQuery);
+
+    $(window).scroll(function(event) {
+
+      $(".animation-fly-in-on-scroll").each(function(i, el) {
+        var el = $(el);
+        if (el.visible(true)) {
+          el.addClass("come-in");
+        }
+      });
+
+    });
+
+
+
+  </script>
   </body>
 </html>
