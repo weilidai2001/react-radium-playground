@@ -1,3 +1,4 @@
 export default {
-  properties: []
+  properties: [],
+  ajaxCallsInProgress: 0
 };

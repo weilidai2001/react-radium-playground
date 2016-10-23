@@ -1,4 +1,6 @@
-const properties = [
+import delay from './delay';
+
+var properties = [
   {
     "id": "R1",
     "propertyType": "residential",
@@ -323,10 +325,44 @@ const properties = [
     "surroundingsPoster": "https://liuinternational.s3.amazonaws.com/asset/1469385972102.jpg"
   }];
 
+const generateId = () => {
+  return (new Date()).getTime();
+};
+
 class PropertyApi {
   static getAllProperties() {
     return new Promise((resolve, reject) => {
       resolve(Object.assign([], properties));
+    });
+  }
+
+  static saveProperty(property) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (property.id) {
+          console.log("saving existing property");
+          const existingCourseIndex = properties.findIndex(a => a.id == property.id);
+          properties.splice(existingCourseIndex, 1, property);
+        } else {
+          //Just simulating creation here.
+          //The server would generate ids and watchHref's for new courses in a real app.
+          //Cloning so copy returned is passed by value rather than by reference.
+          property.id = generateId();
+          properties.push(property);
+        }
+
+        resolve(Object.assign({}, property));
+      }, delay);
+    });
+  }
+
+  static deleteProperty(propertyId) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const indexOfPropertyToDelete = properties.findIndex(course => course.courseId == propertyId);
+        properties.splice(indexOfPropertyToDelete, 1);
+        resolve();
+      }, delay);
     });
   }
 }

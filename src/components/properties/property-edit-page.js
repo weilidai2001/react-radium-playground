@@ -1,6 +1,9 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as propertyActions from '../../actions/property-actions';
 import TextInput from '../common/text-input';
+import toastr from 'toastr';
 
 class PropertyEditPage extends React.Component {
   constructor(props, context) {
@@ -13,6 +16,7 @@ class PropertyEditPage extends React.Component {
     };
 
     this.updatePropertyState = this.updatePropertyState.bind(this);
+    this.saveProperty = this.saveProperty.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -32,7 +36,7 @@ class PropertyEditPage extends React.Component {
   saveProperty(event) {
     event.preventDefault();
 
-    this.props.actions.saveCourse(this.state.course)
+    this.props.actions.saveProperties(this.state.property)
       .then(() => this.redirect())
       .catch(error => {
         toastr.error(error);
@@ -42,8 +46,8 @@ class PropertyEditPage extends React.Component {
 
   redirect() {
     this.setState({saving: false});
-    toastr.success('Course saved');
-    this.context.router.push('/courses');
+    toastr.success('Property saved');
+    this.context.router.push('/operations/properties');
   }
 
   render() {
@@ -52,11 +56,15 @@ class PropertyEditPage extends React.Component {
         <TextInput name="id" label="Id" value={this.state.property.id} onChange={this.updatePropertyState} error={this.state.errors.id}/>
         <TextInput name="price" label="Price" value={this.state.property.price} onChange={this.updatePropertyState} error={this.state.errors.title}/>
         <TextInput name="propertyType" label="Property type" value={this.state.property.propertyType} onChange={this.updatePropertyState} error={this.state.errors.propertyType}/>
-        <input type="submit" disabled={saving} value={saving ? 'Saving...' : 'Save'} className="btn btn-primary" onClick={onSave}/>
+        <input type="submit" disabled={this.state.saving} value={this.state.saving ? 'Saving...' : 'Save'} className="btn btn-primary" onClick={this.saveProperty}/>
       </div>
     );
   }
 }
+
+PropertyEditPage.contextTypes = {
+  router: React.PropTypes.object
+};
 
 function getPropertyById(properties, id) {
   const property = properties.filter(course => course.id == id);
@@ -72,5 +80,10 @@ function mapStateToProps(state, ownProps) {
   return {property};
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(propertyActions, dispatch)
+  };
+}
 
-export default connect(mapStateToProps)(PropertyEditPage);
+export default connect(mapStateToProps, mapDispatchToProps)(PropertyEditPage);
