@@ -331,9 +331,7 @@ const generateId = () => {
 
 class PropertyApi {
   static getAllProperties() {
-    return new Promise((resolve, reject) => {
-      resolve(Object.assign([], properties));
-    });
+    return fetch('/properties').then(response => response.json());
   }
 
   static saveProperty(property) {
