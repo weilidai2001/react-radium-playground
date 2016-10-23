@@ -1,25 +1,35 @@
 import React, {Component} from 'react';
 import Radium from 'radium';
-import PropertyThumbnail from './property-thumbnail';
+import PropertyEditRow from './property-edit-row';
 
 
 const PropertiesContainer = ({properties}) => {
   return (
-    <div style={styles.root}>
+    <table style={styles.root} className="table table-striped">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Order</th>
+        <th>Short description</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
       {
         properties.map(property =>
-          <PropertyThumbnail key={property.id} property={property}/>
+          <PropertyEditRow key={property.id} property={property}/>
         )
       }
-    </div>
+      </tbody>
+    </table>
   );
 };
 
 const styles = {
   root: {
-    display: "flex",
-    flexWrap: "wrap",
-    maxWidth: "1200px"
+    maxWidth: "1200px",
+    margin: "0 auto"
   }
 };
 

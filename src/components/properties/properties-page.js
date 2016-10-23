@@ -12,8 +12,11 @@ class PropertiesPage extends React.Component {
 
     return (
       <div>
+        <h2>Residential</h2>
         <PropertiesContainer properties={residential}/>
+        <h2>Commercial</h2>
         <PropertiesContainer properties={commercial}/>
+        <h2>Hotels</h2>
         <PropertiesContainer properties={hotels}/>
       </div>
     );
