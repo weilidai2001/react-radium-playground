@@ -1,5 +1,6 @@
 const express = require('express');
 var bodyParser = require('body-parser');
+var appRoot = require('app-root-path');
 var compression = require('compression');
 var fileUpload = require('express-fileupload');
 var assetsDao = require('../dao/assets-dao');
@@ -23,20 +24,21 @@ module.exports = function() {
 
     const getExtension = name => name.split('.').pop();
 
-    uploadedFile = req.files[0];
-    const newFilePath = `${__dirname}/uploads/${Date.now()}.${getExtension(uploadedFile.name)}`;
+    const uploadedFile = req.files[0];
+    const newFilePath = `${appRoot}/uploads/${Date.now()}.${getExtension(uploadedFile.name)}`;
 
     uploadedFile.mv(newFilePath, function(err) {
       if (err) {
         res.status(500).send(err);
       }
       else {
-        assetsDao.saveAsset(newFilePath).then(downloadUrl => {
+        const downloadUrl = newFilePath;
+        // assetsDao.saveAsset(newFilePath).then(downloadUrl => {
           res.send({
             status: 'OK',
             url: downloadUrl
           });
-        })
+        // })
       }
     });
   });

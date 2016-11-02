@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as propertyActions from '../../actions/property-actions';
 import TextInput from '../common/text-input';
+import ImageUpload from '../common/image-upload';
 import toastr from 'toastr';
 
 class PropertyEditPage extends React.Component {
@@ -56,6 +57,7 @@ class PropertyEditPage extends React.Component {
         <TextInput name="id" label="Id" value={this.state.property.id} onChange={this.updatePropertyState} error={this.state.errors.id}/>
         <TextInput name="price" label="Price" value={this.state.property.price} onChange={this.updatePropertyState} error={this.state.errors.title}/>
         <TextInput name="propertyType" label="Property type" value={this.state.property.propertyType} onChange={this.updatePropertyState} error={this.state.errors.propertyType}/>
+        <ImageUpload />
         <input type="submit" disabled={this.state.saving} value={this.state.saving ? 'Saving...' : 'Save'} className="btn btn-primary" onClick={this.saveProperty}/>
       </div>
     );
