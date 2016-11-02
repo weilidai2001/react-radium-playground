@@ -17,6 +17,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
+app.use(require('../server/routes/common')());
 app.use(require('../server/routes/liuinternational')());
 
 app.get('*', function(req, res) {

@@ -1,16 +1,7 @@
 const express = require('express');
-var bodyParser = require('body-parser');
-var compression = require('compression');
-
 const router = express.Router();
 
-router.use(bodyParser.urlencoded({
-  extended: true
-}));
-router.use(bodyParser.json());
-router.use(compression());
-
-const PropertiesDao = require('../properties-dao');
+const PropertiesDao = require('../dao/properties-dao');
 const propertiesDao = new PropertiesDao();
 
 module.exports = function() {
