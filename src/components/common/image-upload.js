@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as propertyActions from '../../actions/property-actions';
 import $ from 'jquery';
+import toastr from 'toastr';
 
 class ImageUpload extends React.Component {
   constructor () {
@@ -26,7 +27,9 @@ class ImageUpload extends React.Component {
       data.append(key, value);
     });
 
-    this.props.actions.uploadAsset(data);
+    this.props.actions.uploadAsset(data)
+      .then(() => toastr.success('Upload successful'))
+      .catch(error => toastr.error(error));
   }
 
   render () {
