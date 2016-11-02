@@ -1,4 +1,7 @@
 import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as propertyActions from '../../actions/property-actions';
 import $ from 'jquery';
 
 class ImageUpload extends React.Component {
@@ -17,47 +20,29 @@ class ImageUpload extends React.Component {
     event.stopPropagation(); // Stop stuff happening
     event.preventDefault(); // Totally stop stuff happening
 
-    const that = this;
-
-    // START A LOADING SPINNER HERE
-
-    // Create a formdata object and add the files
     var data = new FormData();
     $.each(this.state.files, function(key, value)
     {
       data.append(key, value);
     });
 
-    $.ajax({
-      url: '/assets',
-      type: 'POST',
-      data: data,
-      cache: false,
-      processData: false, // Don't process the files
-      contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-      success: function(data, textStatus, jqXHR)
-      {
-        that.props.onUploadSuccess(data.url);
-      },
-      error: function(jqXHR, textStatus, errorThrown)
-      {
-        // Handle errors here
-        console.log('ERRORS: ' + textStatus);
-        // STOP LOADING SPINNER
-      }
-    });
-
-
+    this.props.actions.uploadAsset(data);
   }
 
   render () {
     return (
-      <div className="ops-property-details__image-editor-upload">
-        <input className="ops-property-details__image-editor-upload-filename" type="file" onChange={this.onFileChanged} name="image-upload" />
-        <input className="ops-property-details__image-editor-upload-submit" type="submit" onClick={this.onClicked} value="Upload Image" name="submit" />
+      <div className="image-editor-upload">
+        <input className="image-editor-upload__filename" type="file" onChange={this.onFileChanged} name="image-upload" />
+        <input className="image-editor-upload__submit" type="submit" onClick={this.onClicked} value="Upload Image" name="submit" />
       </div>
     );
   }
-};
+}
 
-export default ImageUpload;
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(propertyActions, dispatch)
+  };
+}
+
+export default connect(null, mapDispatchToProps)(ImageUpload);

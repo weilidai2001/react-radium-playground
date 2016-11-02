@@ -20,6 +20,9 @@ export default function propertyReducer(state = initialState.properties, action)
         Object.assign({}, action.property)
       ].sort(sortRule);
 
+    case types.UPLOAD_ASSET_SUCCESS:
+      return state;
+
     default:
       return state;
   }
