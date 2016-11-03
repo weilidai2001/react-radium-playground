@@ -1,10 +1,12 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import $ from 'jquery';
+import toastr from 'toastr';
+
 import * as propertyActions from '../../actions/property-actions';
 import TextInput from '../common/text-input';
 import ImageUpload from '../common/image-upload';
-import toastr from 'toastr';
 
 class PropertyEditPage extends React.Component {
   constructor(props, context) {
@@ -12,12 +14,15 @@ class PropertyEditPage extends React.Component {
 
     this.state = {
       property: Object.assign({}, props.property),
+      thumbnailFiles: {},
       errors: {},
       saving: false
     };
 
     this.updatePropertyState = this.updatePropertyState.bind(this);
     this.saveProperty = this.saveProperty.bind(this);
+    this.onThumbnailFileChanged = this.onThumbnailFileChanged.bind(this);
+    this.onThumbnailSubmitClicked = this.onThumbnailSubmitClicked.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -45,6 +50,25 @@ class PropertyEditPage extends React.Component {
       });
   }
 
+  onThumbnailFileChanged (event) {
+    this.state.thumbnailFiles = event.target.files;
+  }
+
+  onThumbnailSubmitClicked (event) {
+    event.stopPropagation(); // Stop stuff happening
+    event.preventDefault(); // Totally stop stuff happening
+
+    var data = new FormData();
+    $.each(this.state.thumbnailFiles, function(key, value)
+    {
+      data.append(key, value);
+    });
+
+    this.props.actions.uploadThumbnail(data)
+      .then(() => toastr.success('Upload successful'))
+      .catch(error => toastr.error(error));
+  }
+
   redirect() {
     this.setState({saving: false});
     toastr.success('Property saved');
@@ -57,7 +81,7 @@ class PropertyEditPage extends React.Component {
         <TextInput name="id" label="Id" value={this.state.property.id} onChange={this.updatePropertyState} error={this.state.errors.id}/>
         <TextInput name="price" label="Price" value={this.state.property.price} onChange={this.updatePropertyState} error={this.state.errors.title}/>
         <TextInput name="propertyType" label="Property type" value={this.state.property.propertyType} onChange={this.updatePropertyState} error={this.state.errors.propertyType}/>
-        <ImageUpload />
+        <ImageUpload onUploadFileChanged={this.onThumbnailFileChanged} onSubmitClicked={this.onThumbnailSubmitClicked} />
         <input type="submit" disabled={this.state.saving} value={this.state.saving ? 'Saving...' : 'Save'} className="btn btn-primary" onClick={this.saveProperty}/>
       </div>
     );

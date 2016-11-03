@@ -40,13 +40,13 @@ export function saveProperties(property) {
 }
 
 export function uploadSuccess(url) {
-  return {type: types.UPLOAD_ASSET_SUCCESS, url};
+  return {type: types.UPLOAD_THUMBNAIL_SUCCESS, url};
 }
 
-export function uploadAsset(asset) {
+export function uploadThumbnail(asset, property) {
   return function (dispatch, getState) {
     return propertyApi.uploadAsset(asset).then(url => {
-      dispatch(uploadSuccess(url))
+      dispatch(uploadSuccess(url));
     }).catch(error => {
      throw(error);
     })
