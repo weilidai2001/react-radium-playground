@@ -45,10 +45,14 @@ export function uploadSuccess(url) {
 
 export function uploadThumbnail(asset, property) {
   return function (dispatch, getState) {
-    return propertyApi.uploadAsset(asset).then(url => {
-      dispatch(uploadSuccess(url));
-    }).catch(error => {
-     throw(error);
-    })
+    return propertyApi.uploadAsset(asset)
+      .then(url => {
+        const updatedProperty = Object.assign({}, property, {thumbnail: url});
+        dispatch(saveProperties(updatedProperty));
+      })
+      .then(() => dispatch(uploadSuccess()))
+      .catch(error => {
+        throw(error);
+      })
   };
 }
