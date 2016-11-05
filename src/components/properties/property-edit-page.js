@@ -87,19 +87,30 @@ class PropertyEditPage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container" style={{padding: "10px"}}>
         <TextInput name="id" label="Id" value={this.state.property.id} onChange={this.updatePropertyState}
                    error={this.state.errors.id}/>
         <TextInput name="price" label="Price" value={this.state.property.price} onChange={this.updatePropertyState}
                    error={this.state.errors.title}/>
         <TextInput name="propertyType" label="Property type" value={this.state.property.propertyType}
                    onChange={this.updatePropertyState} error={this.state.errors.propertyType}/>
-        <ImagePreview imageSrc={this.props.property.thumbnail} />
 
-        {this.state.uploading && <LoadingDots interval={100} dots={20}/>}
-        <ImageUpload onUploadFileChanged={this.onThumbnailFileChanged} onSubmitClicked={this.onThumbnailSubmitClicked}/>
-        <input type="submit" disabled={this.state.saving} value={this.state.saving ? 'Saving...' : 'Save'}
-               className="btn btn-primary" onClick={this.saveProperty}/>
+        <div className="panel panel-default" >
+          <div className="panel-heading">Thumbnail</div>
+          <div className="panel-body">
+            <div className="col-md-12">
+              <ImagePreview imageSrc={this.props.property.thumbnail} />
+            </div>
+            <div className="col-md-12">
+              {this.state.uploading && <LoadingDots interval={100} dots={20}/>}
+              <ImageUpload onUploadFileChanged={this.onThumbnailFileChanged} onSubmitClicked={this.onThumbnailSubmitClicked}/>
+            </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <input type="submit" disabled={this.state.saving} value={this.state.saving ? 'Saving...' : 'Save'} className="btn btn-primary col-md-2" onClick={this.saveProperty}/>
+        </div>
       </div>
     );
   }
