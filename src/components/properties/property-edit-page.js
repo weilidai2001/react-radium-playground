@@ -7,6 +7,7 @@ import toastr from 'toastr';
 import * as propertyActions from '../../actions/property-actions';
 import TextInput from '../common/text-input';
 import ImageUpload from '../common/image-upload';
+import LoadingDots from '../common/loading-dots';
 
 class PropertyEditPage extends React.Component {
   constructor(props, context) {
@@ -16,6 +17,7 @@ class PropertyEditPage extends React.Component {
       property: Object.assign({}, props.property),
       thumbnailFiles: {},
       errors: {},
+      uploading: false,
       saving: false
     };
 
@@ -50,23 +52,30 @@ class PropertyEditPage extends React.Component {
       });
   }
 
-  onThumbnailFileChanged (event) {
-    this.state.thumbnailFiles = event.target.files;
+  onThumbnailFileChanged(event) {
+    this.setState({thumbnailFiles: event.target.files});
   }
 
-  onThumbnailSubmitClicked (event) {
+  onThumbnailSubmitClicked(event) {
     event.stopPropagation(); // Stop stuff happening
     event.preventDefault(); // Totally stop stuff happening
 
+    this.setState({uploading: true});
+
     var data = new FormData();
-    $.each(this.state.thumbnailFiles, function(key, value)
-    {
+    $.each(this.state.thumbnailFiles, function (key, value) {
       data.append(key, value);
     });
 
     this.props.actions.uploadThumbnail(data, this.state.property)
-      .then(() => toastr.success('Upload successful'))
-      .catch(error => toastr.error(error));
+      .then(() => {
+        toastr.success('Upload successful');
+        this.setState({uploading: false});
+      })
+      .catch(error => {
+        toastr.error(error);
+        this.setState({uploading: false});
+      });
   }
 
   redirect() {
@@ -78,12 +87,18 @@ class PropertyEditPage extends React.Component {
   render() {
     return (
       <div>
-        <TextInput name="id" label="Id" value={this.state.property.id} onChange={this.updatePropertyState} error={this.state.errors.id}/>
-        <TextInput name="price" label="Price" value={this.state.property.price} onChange={this.updatePropertyState} error={this.state.errors.title}/>
-        <TextInput name="thumbnail" label="Thumbnail" value={this.props.property.thumbnail} onChange={this.updatePropertyState}/>
-        <TextInput name="propertyType" label="Property type" value={this.state.property.propertyType} onChange={this.updatePropertyState} error={this.state.errors.propertyType}/>
-        <ImageUpload onUploadFileChanged={this.onThumbnailFileChanged} onSubmitClicked={this.onThumbnailSubmitClicked} />
-        <input type="submit" disabled={this.state.saving} value={this.state.saving ? 'Saving...' : 'Save'} className="btn btn-primary" onClick={this.saveProperty}/>
+        <TextInput name="id" label="Id" value={this.state.property.id} onChange={this.updatePropertyState}
+                   error={this.state.errors.id}/>
+        <TextInput name="price" label="Price" value={this.state.property.price} onChange={this.updatePropertyState}
+                   error={this.state.errors.title}/>
+        <TextInput name="thumbnail" label="Thumbnail" value={this.props.property.thumbnail}
+                   onChange={this.updatePropertyState}/>
+        <TextInput name="propertyType" label="Property type" value={this.state.property.propertyType}
+                   onChange={this.updatePropertyState} error={this.state.errors.propertyType}/>
+        {this.state.uploading && <LoadingDots interval={100} dots={20}/>}
+        <ImageUpload onUploadFileChanged={this.onThumbnailFileChanged} onSubmitClicked={this.onThumbnailSubmitClicked}/>
+        <input type="submit" disabled={this.state.saving} value={this.state.saving ? 'Saving...' : 'Save'}
+               className="btn btn-primary" onClick={this.saveProperty}/>
       </div>
     );
   }
