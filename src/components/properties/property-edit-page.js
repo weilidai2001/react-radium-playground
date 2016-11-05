@@ -9,6 +9,7 @@ import TextInput from '../common/text-input';
 import ImagePreview from '../common/image-preview';
 import ImageUpload from '../common/image-upload';
 import LoadingDots from '../common/loading-dots';
+import RichTextEditor from '../common/rich-text-editor';
 
 class PropertyEditPage extends React.Component {
   constructor(props, context) {
@@ -26,6 +27,7 @@ class PropertyEditPage extends React.Component {
     this.saveProperty = this.saveProperty.bind(this);
     this.onThumbnailFileChanged = this.onThumbnailFileChanged.bind(this);
     this.onThumbnailSubmitClicked = this.onThumbnailSubmitClicked.bind(this);
+    this.onRichTextBoxChange = this.onRichTextBoxChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -51,6 +53,12 @@ class PropertyEditPage extends React.Component {
         toastr.error(error);
         this.setState({saving: false});
       });
+  }
+
+  onRichTextBoxChange(content, field) {
+    let property = this.state.property;
+    property[field] = content;
+    return this.setState({property});
   }
 
   onThumbnailFileChanged(event) {
@@ -106,6 +114,10 @@ class PropertyEditPage extends React.Component {
               <ImageUpload onUploadFileChanged={this.onThumbnailFileChanged} onSubmitClicked={this.onThumbnailSubmitClicked}/>
             </div>
           </div>
+        </div>
+
+        <div className="row">
+          <RichTextEditor value={this.state.property.descriptionLifestyle} onChange={ content => this.onRichTextBoxChange(content, "descriptionLifestyle") } />
         </div>
 
         <div className="row">
