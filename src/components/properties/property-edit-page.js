@@ -6,6 +6,7 @@ import toastr from 'toastr';
 
 import * as propertyActions from '../../actions/property-actions';
 import TextInput from '../common/text-input';
+import ImagePreview from '../common/image-preview';
 import ImageUpload from '../common/image-upload';
 import LoadingDots from '../common/loading-dots';
 
@@ -91,10 +92,10 @@ class PropertyEditPage extends React.Component {
                    error={this.state.errors.id}/>
         <TextInput name="price" label="Price" value={this.state.property.price} onChange={this.updatePropertyState}
                    error={this.state.errors.title}/>
-        <TextInput name="thumbnail" label="Thumbnail" value={this.props.property.thumbnail}
-                   onChange={this.updatePropertyState}/>
         <TextInput name="propertyType" label="Property type" value={this.state.property.propertyType}
                    onChange={this.updatePropertyState} error={this.state.errors.propertyType}/>
+        <ImagePreview imageSrc={this.props.property.thumbnail} />
+
         {this.state.uploading && <LoadingDots interval={100} dots={20}/>}
         <ImageUpload onUploadFileChanged={this.onThumbnailFileChanged} onSubmitClicked={this.onThumbnailSubmitClicked}/>
         <input type="submit" disabled={this.state.saving} value={this.state.saving ? 'Saving...' : 'Save'}

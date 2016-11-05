@@ -32,13 +32,12 @@ module.exports = function() {
         res.status(500).send(err);
       }
       else {
-        const downloadUrl = newFilePath;
-        // assetsDao.saveAsset(newFilePath).then(downloadUrl => {
+        assetsDao.saveAsset(newFilePath).then(downloadUrl => {
           res.send({
             status: 'OK',
             url: downloadUrl
           });
-        // })
+        })
       }
     });
   });
