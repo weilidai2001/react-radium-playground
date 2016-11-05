@@ -1,5 +1,6 @@
 import * as types from './action-types';
 import propertyApi from '../api/property-api';
+import assetApi from '../api/asset-api';
 import {beginAjaxCall, ajaxCallError} from './ajax-status-actions';
 
 export function loadPropertiesSuccess(properties) {
@@ -39,18 +40,18 @@ export function saveProperties(property) {
   };
 }
 
-export function uploadSuccess(url) {
+export function uploadThumbnailSuccess(url) {
   return {type: types.UPLOAD_THUMBNAIL_SUCCESS, url};
 }
 
 export function uploadThumbnail(asset, property) {
   return function (dispatch, getState) {
-    return propertyApi.uploadAsset(asset)
+    return assetApi.uploadAsset(asset)
       .then(url => {
         const updatedProperty = Object.assign({}, property, {thumbnail: url});
         dispatch(saveProperties(updatedProperty));
       })
-      .then(() => dispatch(uploadSuccess()))
+      .then(() => dispatch(uploadThumbnailSuccess()))
       .catch(error => {
         throw(error);
       })
