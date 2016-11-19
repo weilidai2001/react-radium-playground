@@ -1,0 +1,151 @@
+.homepage {
+  text-align: center;
+
+  &__container {
+    @include page-width;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__carousel {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+
+  &__services {
+    @include display-flex;
+    @include breakpoint($superDesktop, $iphone6plus + 1){
+
+    }
+    @include breakpoint($iphone6plus){
+      @include flex-wrap;
+    }
+    padding-top: 20px;
+  }
+
+  &__service {
+    @include three-columns;
+  }
+
+  &__service-title {
+    @include title-large;
+  }
+
+  &__service-summary {
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  &__service-item {
+    padding-bottom: 20px;
+  }
+
+  &__service-item-body {
+    text-align: left;
+  }
+
+  &__service-item-thumbnail {
+    padding-bottom: 60%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+  }
+
+  &__service-item-title {
+    @include title-medium;
+  }
+
+  &__news {
+    @include breakpoint($superDesktop, $iphone6plus + 1){
+      width: 66%;
+    }
+    @include breakpoint($iphone6plus){
+      width: 100%;
+    }
+
+    text-align: left;
+  }
+
+  &__news-title {
+    @include title-large;
+  }
+
+  &__news-item {
+    @include display-flex;
+    @include flex-wrap;
+    @include space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__news-item-thumbnail {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    @include breakpoint($superDesktop, $iphone6plus + 1){
+      width: 33%;
+      padding-bottom: 30%;
+    }
+    @include breakpoint($iphone6plus){
+      width: 100%;
+      padding-bottom: 60%;
+    }
+  }
+
+  &__news-item-body {
+    @include breakpoint($superDesktop, $iphone6plus + 1){
+      width: 66%;
+      padding-left: 20px;
+    }
+    @include breakpoint($iphone6plus){
+      width: 100%;
+      border-bottom: 1px solid grey;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__news-item-title {
+    @include title-medium;
+    text-align: left;
+    padding-left: 10px;
+  }
+
+  &__news-item-date {
+    color: blue;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  &__contact {
+    @include breakpoint($superDesktop, $iphone6plus + 1){
+      width: 33%;
+    }
+    @include breakpoint($iphone6plus){
+      width: 100%;
+    }
+  }
+
+  &__contact-title {
+    @include title-large;
+  }
+
+  &__contact-body {
+    margin-top: 10px;
+  }
+
+  &__contact-map {
+    width: 100%;
+  }
+}

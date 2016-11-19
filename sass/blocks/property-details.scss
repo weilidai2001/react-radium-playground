@@ -1,0 +1,193 @@
+.property-details {
+  @mixin half-screen() {
+    @include breakpoint($superDesktop, $iphone6plus + 1){
+      width: 45%;
+    }
+    @include breakpoint($iphone6plus){
+      width: 100%;
+    }
+  }
+
+  &__container {
+    @include page-width;
+    @include display-flex;
+    @include flex-wrap;
+    @include space-between;
+    padding-bottom: 20px;
+  }
+
+  &__heading {
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: $britishBlue;
+  }
+
+  ul {
+    margin-left: 20px;
+  }
+
+  &__short-description {
+    @include breakpoint($superDesktop, $iphone6plus + 1){
+      width: 70%;
+      font-size: 18px;
+    }
+    @include breakpoint($iphone6plus){
+      font-size: 24px;
+    }
+
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  &__price {
+    @include breakpoint($superDesktop, $iphone6plus + 1){
+      width: 30%;
+      text-align: right;
+      font-size: 18px;
+    }
+    @include breakpoint($iphone6plus){
+      font-size: 20px;
+    }
+
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  &__location {
+    @include half-screen;
+    @include breakpoint($superDesktop, $iphone6plus + 1){
+
+    }
+    @include breakpoint($iphone6plus){
+      font-size: 20px;
+    }
+  }
+
+  &__carousel {
+    @include breakpoint($superDesktop, $ipadLandscape + 1){
+      height: 475px;
+      width: 66.6%;
+    }
+    @include breakpoint($ipadLandscape, $ipadPortrait + 1){
+      height: 400px;
+      width: 66.6%;
+    }
+    @include breakpoint($ipadPortrait + 1, $iphone6plus + 1){
+      height: 420px;
+      width: 100%;
+      padding-bottom: 30px;
+    }
+    @include breakpoint($iphone6plus){
+      height: 200px;
+      width: 100%;
+      padding-bottom: 20px;
+    }
+
+    .carousel {
+      height: 100%;
+    }
+
+    .carousel-inner {
+      height: 100%;
+    }
+
+    img {
+      width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  &__main-features {
+    @include breakpoint($superDesktop, $ipadPortrait + 2){
+      width: 33.3%;
+      padding-left: 20px;
+    }
+    @include breakpoint($ipadPortrait){
+      width: 100%;
+    }
+
+  }
+
+  &__floor-plans {
+    width: 100%;
+    padding-top: 50px;
+  }
+
+  &__floor-plan {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+
+    @include breakpoint($superDesktop, $ipadPortrait + 1){
+      max-height: 400px;
+    }
+    @include breakpoint($ipadPortrait + 1, $iphone6plus + 1){
+      max-height: 300px;
+    }
+    @include breakpoint($iphone6plus){
+      max-height: 200px;
+    }
+  }
+
+  &__travel {
+    @include breakpoint($superDesktop, $iphone6plus + 1){
+      @include display-flex;
+      @include flex-wrap;
+    }
+
+    width: 100%;
+    padding-top: 50px;
+
+    iframe {
+      @include breakpoint($superDesktop, $ipadPortrait + 1){
+        height: 500px;
+        width: 66.6%;
+      }
+      @include breakpoint($ipadPortrait + 1){
+        height: 400px;
+        width: 50%;
+      }
+      @include breakpoint($iphone6plus + 1){
+        height: 300px;
+        width: 100%;
+      }
+
+    }
+  }
+
+  &__travel-description {
+    @include breakpoint($superDesktop, $ipadPortrait + 1){
+      width: 33.3%;
+    }
+    @include breakpoint($ipadPortrait + 1){
+      width: 50%;
+    }
+    @include breakpoint($iphone6plus + 1){
+      width: 100%;
+    }
+    padding-right: 20px;
+  }
+
+  &__full-description {
+    width: 100%;
+    padding-top: 50px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__surroundings-poster {
+    width: 100%;
+  }
+
+  &__lifestyle {
+    padding-top: 30px;
+  }
+
+  &__other {
+    padding-top: 50px;
+  }
+}

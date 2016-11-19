@@ -1,10 +1,38 @@
 <!doctype html>
 <html>
-  <head>
-    <title>App</title>
-  </head>
-  <body>
-    <div id='root'></div>
-    <script src="/bundle.js"></script>
-  </body>
+<head>
+  <title>App</title>
+</head>
+<body>
+<div id='root'></div>
+<script src="/bundle.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+  function setHeightToTallestElement(elementName) {
+    var maxHeight = -1;
+
+    $(elementName).each(function () {
+      maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
+    });
+
+    $(elementName).each(function () {
+      $(this).height(maxHeight);
+    });
+  }
+
+  function readjustHeight() {
+    var isMobile = screen.width < 500;
+
+    if (!isMobile) {
+      setHeightToTallestElement('.homepage__service-summary');
+      setHeightToTallestElement('.homepage__service-item-body');
+      setHeightToTallestElement('.homepage__service'); // for border-right to be tall enough
+    }
+
+  }
+
+  readjustHeight();
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</body>
 </html>

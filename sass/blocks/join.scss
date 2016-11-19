@@ -1,0 +1,29 @@
+.join-us {
+  &__container {
+    @include page-width;
+  }
+
+  &__title {
+    @include title-large;
+    margin-bottom: 20px;
+  }
+
+  &__vacancies {
+    @include display-flex;
+    @include flex-wrap;
+  }
+
+  &__vacancy {
+    @include three-columns;
+  }
+
+  &__vacancy-title {
+    @include title-medium;
+    text-align: center;
+  }
+
+  &__vacancy-description {
+    padding-top: 10px;
+    padding-left: 20px;
+  }
+}

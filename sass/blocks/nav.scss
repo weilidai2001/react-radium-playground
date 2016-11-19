@@ -1,0 +1,79 @@
+nav {
+  width: 100%;
+  background-color: $britishBlue;
+  .nav__content {
+    @include page-width;
+    @include display-flex;
+    @include flex-wrap;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  .nav__logo {
+    display: block;
+
+    @include breakpoint($superDesktop, $iphone6plus + 1){
+      width: 400px;
+      max-width: 90%;
+    }
+    @include breakpoint($iphone6plus){
+
+    }
+  }
+
+  .navbar {
+    width: 100%;
+    @include breakpoint($superDesktop, $iphone6plus + 1){
+
+    }
+    @include breakpoint($iphone6plus){
+
+    }
+
+    margin-bottom: 0;
+    background-color: $britishBlue;
+    border: none;
+
+    .navbar-toggle:hover, .navbar-toggle:focus {
+      background-color: $britishBlue;
+    }
+    .navbar-toggle .icon-bar {
+      background-color: $backgroundColor;
+    }
+    .navbar-nav {
+      .open {
+        a, a:hover, a:focus, .dropdown-menu > li > a {
+          color: $backgroundColor;
+          background-color: $britishBlue;
+        }
+      }
+    }
+
+    @media screen and (min-width: $tabletPortrait) {
+      .navbar-collapse {
+        padding-left: 0;
+      }
+    }
+    .navbar-nav {
+      & > li > a {
+        color: $backgroundColor;
+      }
+      & > .active > a,
+      & > .active > a:hover,
+      & > .active > a:focus {
+        color: $backgroundColor;
+        border: none;
+        font-weight: bold;
+      }
+      li > a:hover,
+      li > a:focus {
+        text-decoration: none;
+        background-color: inherit;
+        font-weight: bold;
+      }
+      .dropdown-menu {
+        background-color: $britishBlue;
+      }
+    }
+  }
+}

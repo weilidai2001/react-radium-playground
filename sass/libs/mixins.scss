@@ -1,0 +1,59 @@
+@mixin page-width() {
+  max-width: 90%;
+  width: 1100px;
+  margin: 0 auto;
+}
+
+@mixin title-large() {
+  margin-top: 10px;
+  padding: 5px 0 5px 0;
+  font-size: 26px;
+  text-align: center;
+  color: $britishBlue;
+  border-bottom: solid 1px #cbcbcb;
+}
+
+@mixin title-medium() {
+  background-color: $britishRed;
+  color: white;
+  font-size: 15px;
+  padding: 5px 0 5px 0;
+  margin-bottom: 0;
+}
+
+@mixin display-flex() {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@mixin space-between() {
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+@mixin flex-wrap() {
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+@mixin three-columns () {
+  display: block;
+  @include breakpoint($superDesktop, $iphone6plus + 1){
+    width: 32%;
+
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+    &:nth-child(3n + 1) {
+      margin-left: 0;
+
+    }
+    &:nth-child(3n + 2) {
+      margin-left: 2%;
+      margin-right: 2%;
+    }
+  }
+  @include breakpoint($iphone6plus){
+    width: 100%;
+  }
+}

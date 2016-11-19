@@ -1,0 +1,121 @@
+.ops-property-details {
+
+  @mixin label-font() {
+    font-weight: bold;
+  }
+
+  @mixin component-container() {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  &__content {
+    @include page-width;
+    padding-top: 30px;
+  }
+
+  &__single-row-label {
+    @include label-font;
+    @include component-container;
+    width: 200px;
+  }
+
+  &__single-row-input {
+    width: calc(100% - 200px);
+  }
+
+  &__multi-rows {
+    @include display-flex;
+    @include flex-wrap;
+    @include component-container;
+  }
+
+  &__multi-rows-heading {
+    @include label-font;
+    width: 200px;
+  }
+
+  &__multi-rows-rows {
+    width: calc(100% - 200px);
+  }
+
+  &__multi-rows-input {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  &__richtextbox-container {
+    @include display-flex;
+    @include flex-wrap;
+    @include component-container;
+  }
+
+  &__richtextbox-label {
+    @include label-font;
+    width: 200px;
+  }
+
+  &__richtextbox {
+    width: calc(100% - 200px);
+    border: 1px solid lightgrey;
+  }
+
+  &__single-image-editor {
+    @include display-flex;
+    @include flex-wrap;
+    @include component-container;
+  }
+
+  &__single-image-editor-label {
+    @include label-font;
+    width: 200px;
+  }
+
+  &__single-image-editor-image-container {
+    width: 33%;
+  }
+
+  &__single-image-editor-image {
+    width: 100%;
+  }
+
+  &__image-editor-upload {
+    width: 33%;
+    padding: 10px;
+  }
+
+  &__image-editor-upload-filename {
+    width: 100%;
+  }
+
+  &__image-editor-upload-submit {
+    margin-top: 20px;
+  }
+
+  &__multi-image-editor {
+    @include display-flex;
+    @include flex-wrap;
+    @include component-container;
+  }
+
+  &__multi-image-editor-label {
+    @include label-font;
+    width: 200px;
+  }
+
+  &__multi-image-editor-images {
+    @include display-flex;
+    @include flex-wrap;
+    width: calc(100% - 200px);
+  }
+
+  &__multi-image-editor-image-container {
+    width: 33.3%;
+    border: 1px solid lightgray;
+  }
+
+  &__multi-image-editor-image {
+    width: 100%;
+    padding-bottom: 33%;
+  }
+}
