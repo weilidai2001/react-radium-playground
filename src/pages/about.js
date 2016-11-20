@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../components/common/navbar';
 
-class Homepage extends React.Component {
+class About extends React.Component {
   constructor(props, context) {
     super(props, context);
   }
@@ -33,4 +33,4 @@ class Homepage extends React.Component {
   }
 }
 
-export default (Homepage);
+export default (About);

@@ -40,7 +40,7 @@ class Navbar extends React.Component {
                 </ul>
               </li>
               <li><a href="/#news">业内新闻</a></li>
-              <li><a href="/pages/cn/join-us.html">加入我们</a></li>
+              <li><a href="/join">加入我们</a></li>
               <li><a href="/#contact-us">联系我们</a></li>
             </ul>
           </div>
