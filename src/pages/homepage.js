@@ -1,5 +1,4 @@
 import React from 'react';
-import Radium, {Style} from 'radium';
 import Navbar from '../components/common/navbar';
 
 class Homepage extends React.Component {
@@ -10,7 +9,7 @@ class Homepage extends React.Component {
   render() {
     return (
 
-      <div>
+      <div className="homepage">
         <nav>
           <Navbar/>
         </nav>

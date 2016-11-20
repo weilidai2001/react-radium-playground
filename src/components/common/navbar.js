@@ -30,18 +30,18 @@ class Navbar extends React.Component {
                   <li><a href="/#other">其它服务</a></li>
                 </ul>
               </li>
-              <li><a href="/pages/cn/about-us.html">关于我们</a></li>
+              <li><a href="/about">关于我们</a></li>
               <li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">投资项目 <span className="caret"></span></a>
                 <ul className="dropdown-menu">
-                  <li><a href="/pages/cn/investment.html#residential">住宅投资</a></li>
-                  <li><a href="/pages/cn/investment.html#businesses">商业投资</a></li>
-                  <li><a href="/pages/cn/investment.html#hotels">酒店投资</a></li>
+                  <li><a href="/properties#residential">住宅投资</a></li>
+                  <li><a href="/properties#businesses">商业投资</a></li>
+                  <li><a href="/properties#hotels">酒店投资</a></li>
                 </ul>
               </li>
-              <li><a href="/index.html#news">业内新闻</a></li>
+              <li><a href="/#news">业内新闻</a></li>
               <li><a href="/pages/cn/join-us.html">加入我们</a></li>
-              <li><a href="/index.html#contact-us">联系我们</a></li>
+              <li><a href="/#contact-us">联系我们</a></li>
             </ul>
           </div>
         </div>
