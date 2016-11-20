@@ -24,6 +24,9 @@
 
   &__property {
     @include three-columns;
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   &__property-subtitle {
@@ -46,6 +49,7 @@
   &__property-description {
     width: 66.6%;
     margin-left: 15px;
+    color: black;
   }
 
   &__property-description--full-width {
