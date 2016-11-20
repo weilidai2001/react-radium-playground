@@ -34,9 +34,9 @@ class Navbar extends React.Component {
               <li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">投资项目 <span className="caret"></span></a>
                 <ul className="dropdown-menu">
-                  <li><a href="/properties#residential">住宅投资</a></li>
-                  <li><a href="/properties#businesses">商业投资</a></li>
-                  <li><a href="/properties#hotels">酒店投资</a></li>
+                  <li><a href="/investment#residential">住宅投资</a></li>
+                  <li><a href="/investment#businesses">商业投资</a></li>
+                  <li><a href="/investment#hotels">酒店投资</a></li>
                 </ul>
               </li>
               <li><a href="/#news">业内新闻</a></li>
